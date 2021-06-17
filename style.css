@@ -1,0 +1,59 @@
+body{
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1{
+    margin: 5px;
+    text-align: center;
+    font-size: 50px;
+    font-weight: 600;
+}
+
+#movieName {
+    margin: 0 9vw 1vh 1vw ;
+    height: 5vh;
+    width: 90vw;
+}
+
+#search {
+    margin-left: 1vw ;
+    height: 40px;
+    width: 70px;
+    border-radius: 5px;
+    background-color: rgb(127, 150, 255);
+    cursor: pointer;
+}
+
+#allmovies{
+    margin-top: 5px;
+}
+.section {
+    display: flex;
+    overflow-x: auto;
+    width: 100%;
+}
+
+.section img {
+    width: 300px;
+    transition: 250ms all;
+}
+
+img:hover {
+    margin-left: 0 40px;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.content{
+    border: 1px solid red;
+    height: 500px;
+    display: none;
+}
+
+.content-show {
+    display: block;
+}
