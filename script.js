@@ -3,7 +3,9 @@ const apikey = "2c4271aa73cbd98b9f055b7cd063ff34";
 
 let allmovies = document.querySelector("#allmovies");
 let movieName = document.querySelector("#movieName");
-
+let upcoming = document.querySelector(".upcomingMovies");
+let topRated = document.querySelector(".topRatedMovies");
+let popular = document.querySelector(".popularMovies");
 let btn = document.querySelector("#search");
 
 function generateurl(path){
@@ -30,15 +32,55 @@ function searchMovie(value){
     
 }
 
+upcomingMovies();
+function upcomingMovies(){
+    let path = "/movie/upcoming";  
+    let url = generateurl(path);
+    requestMovies(url,upcomingMoviessetExistingMovies,handleError);
+}
+function upcomingMoviessetExistingMovies(data){
+    const movies = data.results;
+    let getter = getMovies(movies);
+    // moviesExisting.innerHTML = `<p >${categories}</p>`
+    upcoming.append(getter);
+}
+
+popularMovies();
+function popularMovies(){
+    let path = "/movie/popular";
+    let url = generateurl(path);
+    requestMovies(url,popularMoviessetExistingMovies,handleError);
+}
+function popularMoviessetExistingMovies(data){
+    const movies = data.results;
+    let getter = getMovies(movies);
+    // moviesExisting.innerHTML = `<p >${categories}</p>`
+    popular.append(getter);
+}
+topratedMovies();
+function topratedMovies(){
+
+    let path = "/movie/top_rated";
+    let url = generateurl(path);
+    // let setExistingMoviesHelper = setExistingMovies(data,{categories:"top rated"});
+    requestMovies(url,topratedMoviessetExistingMovies,handleError);
+}
+
+
+function topratedMoviessetExistingMovies(data){
+    const movies = data.results;
+    let getter = getMovies(movies);
+    // moviesExisting.innerHTML = `<p >${categories}</p>`
+    topRated.append(getter);
+}
+
 btn.onclick = function getMovie(event){
     event.preventDefault();
     searchMovie(movieName.value);
-    
     movieName.value = "";
 }
 
 function setMovies(data){
-    console.log(data.results)
     allmovies.innerHTML = "";
     const movies = data.results;
     let getter = getMovies(movies);
@@ -49,7 +91,6 @@ function setMovies(data){
 let imgurl = "https://image.tmdb.org/t/p/w500";
 
 function getMoviesHelper(movies){
-    // console.log("2");
     return movies.map((movie) => {
         if(movie.poster_path){
             return `<img src=${imgurl + movie.poster_path} data-movie-id=${movie.id}>`;
@@ -58,7 +99,6 @@ function getMoviesHelper(movies){
 }
 
 function getMovies(movies){
-    // console.log("1");
     let movieContainer = document.createElement("div");
     movieContainer.classList.add("movie");
     let movieDetails = `
@@ -105,7 +145,7 @@ function getiFrame(video){
     const iframe = document.createElement("iframe");
     iframe.src = `https://www.youtube.com/embed/${video.key}`;
     iframe.height = 315;
-    iframe.width = 360;
+    iframe.width = 300;
     iframe.allowFullscreen = true;
 
     return iframe;
