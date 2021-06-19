@@ -95,9 +95,12 @@ img:hover {
 }
 
 iframe {
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
+h2{
+    margin-top: 80px;
+}
 #close{
     cursor: pointer;
     background-color: red;
