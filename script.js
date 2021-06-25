@@ -97,7 +97,7 @@ let imgurl = "https://image.tmdb.org/t/p/w500";
 function getMoviesHelper(movies){
     return movies.map((movie) => {
         if(movie.poster_path){
-            return `<img src=${imgurl + movie.poster_path} data-movie-id=${movie.id}>`;
+            return `<img class="poster" src=${imgurl + movie.poster_path} data-movie-id=${movie.id}>`;
         }
     })
 
@@ -109,7 +109,7 @@ function getMovies(movies){
     movieContainer.classList.add("movie");
     let movieDetails = `
     <section class="section">
-            ${getMoviesHelper(movies)}
+            ${getMoviesHelper(movies).join("")}
         </section>
         <div class="content">
         <p id="close">X</p>
