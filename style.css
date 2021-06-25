@@ -161,3 +161,6 @@ iframe {
     border-radius: 55px;
     box-shadow: 2px 2px 9px 8px rgb(224, 159, 142);
 }
+.poster {
+    paddind: 0.5rem;
+}
