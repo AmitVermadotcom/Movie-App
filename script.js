@@ -8,6 +8,8 @@ let topRated = document.querySelector(".topRatedMovies");
 let popular = document.querySelector(".popularMovies");
 let btn = document.querySelector("#search");
 
+
+
 function generateurl(path){
     return `https://api.themoviedb.org/3${path}?api_key=2c4271aa73cbd98b9f055b7cd063ff34`;
 }
@@ -38,6 +40,7 @@ function upcomingMovies(){
     let url = generateurl(path);
     requestMovies(url,upcomingMoviessetExistingMovies,handleError);
 }
+
 function upcomingMoviessetExistingMovies(data){
     const movies = data.results;
     let getter = getMovies(movies);
@@ -85,6 +88,7 @@ function setMovies(data){
     const movies = data.results;
     let getter = getMovies(movies);
     allmovies.append(getter);
+    
     console.log(movies.poster_path);
 }
 
@@ -96,6 +100,8 @@ function getMoviesHelper(movies){
             return `<img src=${imgurl + movie.poster_path} data-movie-id=${movie.id}>`;
         }
     })
+
+    // removeCur();
 }
 
 function getMovies(movies){
@@ -106,14 +112,14 @@ function getMovies(movies){
             ${getMoviesHelper(movies)}
         </section>
         <div class="content">
-            <p id="close">X</p>
+        <p id="close">X</p>
         </div>
     `
     movieContainer.innerHTML = movieDetails;
-    return movieContainer
+    
+    
+    return movieContainer;
 }
-
-
 
 document.onclick = function(event){
     let Target = event.target;
@@ -134,7 +140,7 @@ document.onclick = function(event){
             })
     }
 
-    console.log(event.target.dataset.movieId);
+    // console.log(event.target.dataset.movieId);
 
     if(Target.id == "close"){
         Target.parentElement.classList.remove("content-show");
@@ -163,3 +169,13 @@ function createVideos(data,content){
         content.appendChild(iframecontainer);
     }
 }
+
+
+function removeCur(){
+    let allIframe  = document.querySelectorAll(".section img");
+    console.log(allIframe);
+}
+
+setTimeout(() => {
+    removeCur();
+}, 10000);
